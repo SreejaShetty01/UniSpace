@@ -64,11 +64,11 @@ UniSpace brings five connected areas into one workspace.
 
 | Workspace | Purpose |
 |---|---|
-| **Dashboard** | Overview of workspace activity, live statistics, recent items, and quick actions. |
-| **My Tasks** | Manage tasks with descriptions, due dates, priority levels, completion status, and bookmarks. |
+| **Dashboard** | Overview of workspace activity, live statistics, recent items and quick actions. |
+| **My Tasks** | Manage tasks with descriptions, due dates, priority levels, completion status and bookmarks. |
 | **My Pages** | Create and maintain personal notes with editable titles and content. |
-| **Knowledge Library** | Save useful URLs with titles, descriptions, and categories. |
-| **Bookmarks** | Access bookmarked tasks, pages, and resources from one place, with links to their original records. |
+| **Knowledge Library** | Save useful URLs with titles, descriptions and categories. |
+| **Bookmarks** | Access bookmarked tasks, pages and resources from one place, with links to their original records. |
 
 ### A connected workspace
 
