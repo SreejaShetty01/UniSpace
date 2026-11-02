@@ -150,4 +150,4 @@ It does not currently include user authentication, account management, or multi-
 
 The Docker Compose configuration publishes the application on port `3000` and MongoDB on port `27017`. MongoDB authentication is not configured in this local development setup.
 
-Do not expose this configuration directly to the public internet without implementing appropriate authentication, access controls, and database security.
+Do not expose this configuration directly to the public internet without implementing appropriate authentication, access controls and database security.
