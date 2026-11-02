@@ -1,0 +1,15 @@
+<aside class="sidebar">
+    <a href="/" class="brand"><span class="brand-mark">u</span>UniSpace<span>.</span></a>
+
+    <p class="sidebar-label">WORKSPACE</p>
+
+    <nav class="sidebar-nav">
+        <a href="/" class="nav-link <%= currentPage === 'dashboard' ? 'active' : '' %>"><span class="nav-icon">⌂</span>Dashboard</a>
+        <a href="/tasks" class="nav-link <%= currentPage === 'tasks' ? 'active' : '' %>"><span class="nav-icon">✓</span>My Tasks</a>
+        <a href="/pages" class="nav-link <%= currentPage === 'pages' ? 'active' : '' %>"><span class="nav-icon">▤</span>My Pages</a>
+        <a href="/library" class="nav-link <%= currentPage === 'library' ? 'active' : '' %>"><span class="nav-icon">↗</span>Knowledge Library</a>
+        <a href="/bookmarks" class="nav-link <%= currentPage === 'bookmarks' ? 'active' : '' %>"><span class="nav-icon">☆</span>Bookmarks</a>
+    </nav>
+
+    <div class="sidebar-footer">Your space. Your pace.</div>
+</aside>

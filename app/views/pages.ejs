@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSpace | My Pages</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="app-layout">
+
+    <%- include("partials/sidebar") %>
+
+    <main class="main-content">
+
+        <%- include("partials/header") %>
+
+        <section class="welcome-section">
+            <p class="eyebrow">YOUR PERSONAL SPACE</p>
+            <h1>My Pages</h1>
+            <p>Capture your thoughts, ideas and notes in one place.</p>
+        </section>
+
+        <!-- Create New Page -->
+        <section class="content-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CREATE SOMETHING</p>
+                    <h2>New Page</h2>
+                </div>
+            </div>
+
+            <form action="/pages/add" method="POST" class="form-card">
+
+                <div class="form-group">
+                    <label for="title">Page title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Give your page a title..."
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea
+                        id="content"
+                        name="content"
+                        rows="7"
+                        placeholder="Start writing your thoughts..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Create Page +
+                </button>
+
+            </form>
+        </section>
+
+        <!-- All Pages -->
+        <section class="content-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR COLLECTION</p>
+                    <h2>All Pages</h2>
+                </div>
+
+                <span class="task-count">
+                    <%= pages.length %> pages
+                </span>
+            </div>
+
+            <% if (pages.length === 0) { %>
+
+                <div class="empty-state">
+                    No pages yet. Create your first page above.
+                </div>
+
+            <% } else { %>
+
+                <div class="pages-grid">
+
+                    <% pages.forEach(page => { %>
+
+                        <article class="page-card" id="page-<%= page._id %>">
+
+                            <form
+                                action="/pages/<%= page._id %>/edit"
+                                method="POST"
+                                class="page-edit-form"
+                            >
+
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value="<%= page.title %>"
+                                    required
+                                    class="page-title-input"
+                                >
+
+                                <textarea
+                                    name="content"
+                                    rows="8"
+                                    class="page-content-input"
+                                ><%= page.content %></textarea>
+
+                                <div class="page-card-footer">
+
+                                    <button type="submit" class="action-btn">
+                                        Save Changes
+                                    </button>
+
+                                    <span class="page-date">
+                                        Updated <%= page.updatedAt
+                                            ? new Date(page.updatedAt).toLocaleDateString()
+                                            : "Recently" %>
+                                    </span>
+
+                                </div>
+
+                            </form>
+
+                            <div class="page-actions">
+
+                                <form
+                                    action="/pages/<%= page._id %>/bookmark"
+                                    method="POST"
+                                >
+                                    <button type="submit" class="action-btn">
+                                        <%= page.bookmarked ? '★ Bookmarked' : '☆ Bookmark' %>
+                                    </button>
+                                </form>
+
+                                <form action="/pages/<%= page._id %>/delete" method="POST" onsubmit="return confirm('Delete this page?')">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+
+                            </div>
+
+                        </article>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSpace | Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<div class="app-layout">
+
+    <%- include("partials/sidebar") %>
+
+    <main class="main-content">
+
+        <%- include("partials/header") %>
+
+        <!-- Welcome -->
+        <section class="welcome-section">
+            <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+            <h1>Welcome to UniSpace 👋</h1>
+            <p>Everything you think, plan, create and organize — in one place.</p>
+        </section>
+
+        <div class="quick-actions" aria-label="Quick actions">
+            <a class="quick-action" href="/tasks"><span>＋</span> Add a task</a>
+            <a class="quick-action" href="/pages"><span>＋</span> Write a page</a>
+            <a class="quick-action" href="/library"><span>＋</span> Save a resource</a>
+        </div>
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <article class="stat-card">
+                <span>Total Tasks</span>
+                <h2><%= stats.taskCount %></h2>
+            </article>
+
+            <article class="stat-card">
+                <span>Completed Tasks</span>
+                <h2><%= stats.completedCount %></h2>
+            </article>
+
+            <article class="stat-card">
+                <span>My Pages</span>
+                <h2><%= stats.pageCount %></h2>
+            </article>
+
+            <article class="stat-card">
+                <span>Saved Resources</span>
+                <h2><%= stats.resourceCount %></h2>
+            </article>
+
+        </section>
+
+        <!-- Recent Tasks -->
+        <section class="content-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STAY ORGANIZED</p>
+                    <h2>Recent Tasks</h2>
+                </div>
+
+                <a href="/tasks" class="text-link">View all →</a>
+            </div>
+
+            <% if (tasks.length === 0) { %>
+
+                <div class="empty-state">
+                    <span class="empty-icon">✓</span><strong>Your to-do list starts here</strong>
+                    <p>Add a task to turn an idea into your next small win.</p><a class="primary-btn" href="/tasks">Create a task</a>
+                </div>
+
+            <% } else { %>
+
+                <div class="item-list">
+
+                    <% tasks.forEach(task => { %>
+
+                        <div class="list-item" id="task-<%= task._id %>">
+                            <div>
+                                <strong class="<%= task.completed ? 'completed' : '' %>">
+                                    <%= task.task %>
+                                </strong>
+
+                                <div class="task-meta">
+                                    <span class="priority <%= task.priority.toLowerCase() %>">
+                                        <%= task.priority %> Priority
+                                    </span>
+
+                                    <span>
+                                        <%= task.completed ? 'Completed' : 'Pending' %>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <span class="status <%= task.completed ? 'done' : 'pending' %>">
+                                <%= task.completed ? 'Completed' : 'In Progress' %>
+                            </span>
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+        <!-- Recent Pages -->
+        <section class="content-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR THOUGHTS</p>
+                    <h2>Recent Pages</h2>
+                </div>
+
+                <a href="/pages" class="text-link">View all →</a>
+            </div>
+
+            <% if (pages.length === 0) { %>
+
+                <div class="empty-state">
+                    No pages created yet. Start capturing your ideas.
+                </div>
+
+            <% } else { %>
+
+                <div class="card-grid">
+
+                    <% pages.forEach(page => { %>
+
+                        <article class="preview-card" id="page-<%= page._id %>">
+                            <h3><%= page.title %></h3>
+
+                            <p>
+                                <%= (page.content || '').slice(0, 120) %>
+                            </p>
+
+                            <a href="/pages#page-<%= page._id %>" class="text-link">
+                                Open page →
+                            </a>
+                        </article>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+        <!-- Recent Resources -->
+        <section class="content-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">KNOWLEDGE COLLECTION</p>
+                    <h2>Recent Resources</h2>
+                </div>
+
+                <a href="/library" class="text-link">View all →</a>
+            </div>
+
+            <% if (resources.length === 0) { %>
+
+                <div class="empty-state">
+                    Your knowledge library is waiting for its first resource.
+                </div>
+
+            <% } else { %>
+
+                <div class="item-list">
+
+                    <% resources.forEach(resource => { %>
+
+                        <div class="list-item" id="resource-<%= resource._id %>">
+                            <div>
+                                <strong><%= resource.title %></strong>
+                                <p><%= resource.category %></p>
+                            </div>
+
+                            <a href="<%= resource.url %>"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="text-link">
+                                Open ↗
+                            </a>
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </section>
+
+    </main>
+</div>
+</body>
+</html>

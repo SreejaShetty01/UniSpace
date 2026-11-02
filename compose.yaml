@@ -1,0 +1,29 @@
+services:
+  todo-app:
+    build:
+      context: ./app
+    depends_on:
+      todo-database:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://todo-database:27017/todoapp
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+  todo-database:
+    image: mongo:6
+    volumes:
+      - database:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+volumes:
+  database:
