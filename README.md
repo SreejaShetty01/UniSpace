@@ -1,6 +1,6 @@
 # UniSpace
 
-### One space for what you think, plan, create, and want to find again.
+### One space for what you think, plan, create and want to find again.
 
 UniSpace addresses the everyday friction of managing information across multiple tools. Tasks get lost among notes, useful resources become buried in browser bookmarks and ideas end up scattered across different places. UniSpace brings these disconnected pieces together in one personal workspace, making it easier to organize what matters, keep track of ongoing work and find important information whenever you need it.
 
